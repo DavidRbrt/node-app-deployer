@@ -15,7 +15,7 @@ import requests
 ####################################################################################
 def help():
     print(sys.argv[0])
-    print("deploy a node app")
+    print("deploy a node app (to run server side)")
     print("-"*100)
     print("Usage : "+sys.argv[0] +
           " [-h|--help] [-f|--folder] <app_folder> [-c|--conf] <conf_file> [-p|--pull] [-i|--install] [-a|--auto] [-s|--stop] [-k|--kill]\n")
@@ -215,45 +215,6 @@ def find_process(app_folder):
             continue
 
     return app_pid
-
-
-# WEBHOOK HOST START
-####################################################################################
-# def send_webhook(message):
-
-#     webhook_url = ""
-#     username = "unknwon"
-#     title = message
-#     host_url = ""
-
-#     hostname = socket.gethostname()
-#     if hostname == 'ns3131065':
-#         webhook_url = "https://discordapp.com/api/webhooks/691685832976892055/1o7Lg4WcXQFrBXKqjf5XYNqV1STbZpI7nLoU3iyo79vJa-CaiT8bFZhKkPJA-9V_B7xN"
-#         username = "host dave"
-#         host_url = "http://nas.davepointcom.com:5000/"
-#     elif hostname == 'ns329301':
-#         webhook_url = "https://discordapp.com/api/webhooks/691715706332381237/92zVdQILyADhwDp4H8uZ9Fn7wzx_Yy45jvyvSMHzobr8K-7LLbdh-Nw6n3D_qLJ8e6r6"
-#         username = "host gordo"
-#         host_url = ""  # TODO gordo
-
-#     data = {}
-#     data["username"] = username
-
-#     data["embeds"] = []
-#     embed = {}
-#     embed["title"] = title
-#     embed["url"] = host_url
-#     data["embeds"].append(embed)
-
-#     result = requests.post(webhook_url, data=json.dumps(data), headers={
-#         "Content-Type": "application/json"})
-
-#     try:
-#         result.raise_for_status()
-#     except requests.exceptions.HTTPError as err:
-#         print(err)
-#     else:
-#         print("Webhook delivered successfully, code {}.".format(result.status_code))
 
 
 ####################################################################################
