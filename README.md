@@ -22,4 +22,4 @@
 
 ## Run on target
 
-> ./deploy-fucknews --help
+> ./deploy-node-app --help
