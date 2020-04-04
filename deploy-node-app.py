@@ -312,6 +312,7 @@ if __name__ == "__main__":
         print("npm install ...")
         os.chdir(app_folder)
         run_cmd('npm install')
+        # TODO: specific ...
         run_cmd(
             'npm install --prefix {f} && npm run build --prefix {f}'.format(f='front'))
         ##########################################
@@ -321,6 +322,7 @@ if __name__ == "__main__":
         ##########################################
         print("\n\nAPP STARTING _________________________________\n")
         os.chdir(app_folder)
+        # TODO: specific ...
         run_cmd('{e} npm run start &'.format(e=env))
         if webhook:
             webhook.send(webhook_start_message)
