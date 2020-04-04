@@ -1,0 +1,19 @@
+{
+    "env": [
+        {
+            "name": "NODE_ENV",
+            "value": "production"
+        },
+        {
+            "name": "PORT",
+            "value": "5000"
+        }
+    ],
+    "webhook": {
+        "url": "https://discordapp.com/api/webhooks/<id from discord>",
+        "username": "template",
+        "host_url": "http://template.com",
+        "start_message": "template server started !",
+        "stop_message": "template server started !"
+    }
+}
