@@ -314,7 +314,7 @@ if __name__ == "__main__":
         run_cmd('npm install')
         # TODO: specific ...
         run_cmd(
-            'npm install --prefix {f} && npm run build --prefix {f}'.format(f='front'))
+            'npm install --prefix {f} && npm run build --prefix {f}'.format(f='client'))
         ##########################################
 
     if not do_stop:
