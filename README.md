@@ -4,22 +4,36 @@
 
 - you may need to install python packages:
 
-> pip<version> install gitpython
+```
+$ pip<version> install gitpython
+```
 
 - you need to have your repo cloned with enabled credentials:
 
-> git clone <url/project>
+```
+$ git clone <url/project>
+```
 
-> mkdir <project>
+```
+$ mkdir <project>
+```
 
-> git config credential.helper store
+```
+$ git config credential.helper store
+```
 
-> git pull
+```
+$ git pull
+```
 
 - app server port as to be open:
 
-> sudo ufw allow <port>
+```
+$ sudo ufw allow <port>
+```
 
 ## Run on target
 
-> ./deploy-node-app --help
+```
+$ ./deploy-node-app --help
+```
