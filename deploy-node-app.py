@@ -304,8 +304,10 @@ if __name__ == "__main__":
         repo.git.clean('-xdf')
         # pull in the changes from from the remote
         repo.remotes.origin.pull('--force')
-        # TODO: git submodule update --recursive --remote
-        ##########################################
+        # update submodules
+        for submodule in repo.submodules:
+            submodule.update('--recursive', '--remote')
+       ##########################################
 
     if do_install:
         # INSTALL AND BUILD
