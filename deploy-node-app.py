@@ -156,10 +156,19 @@ def get_conf(conf_file):
 def parse_conf(json_conf):
     env = ''
     webhook = None
+    cmd_start = 'npm run start'
+    cmd_install = None
 
     # parse env
     for var in json_conf['env']:
         env += ("{}='{}' ").format(var['name'], var['value'])
+
+    # parse cmd
+    if 'cmd' in json_conf:
+        if 'start' in json_conf['cmd']:
+            cmd_start = json_conf['cmd']['start']
+        if 'build' in json_conf['cmd']:
+            cmd_install = json_conf['cmd']['install']
 
     # parse webhook
     if 'webhook' in json_conf:
@@ -170,7 +179,7 @@ def parse_conf(json_conf):
         if 'host_url' in json_conf['webhook']:
             webhook.host_url = json_conf['webhook']['host_url']
 
-    return env, webhook
+    return env, cmd_start, cmd_install, webhook
 
 
 # RUN CMD
@@ -228,7 +237,8 @@ if __name__ == "__main__":
 
     # get json conf
     json_conf = get_conf(conf_file)
-    env, webhook = parse_conf(json_conf)
+    env, cmd_start, cmd_install, webhook = parse_conf(json_conf)
+
     webhook_start_message = None
     webhook_stop_message = None
     if 'webhook' in json_conf and 'start_message' in json_conf['webhook']:
@@ -302,7 +312,7 @@ if __name__ == "__main__":
         repo.git.reset('--hard', 'origin/master')
         # remove any extra non-tracked files (.pyc, etc)
         repo.git.clean('-xdf')
-        # pull in the changes from from the remote
+        # pull in the changes from the remote
         repo.remotes.origin.pull('--force')
         # update submodules
         for submodule in repo.submodules:
@@ -314,10 +324,7 @@ if __name__ == "__main__":
         ##########################################
         print("npm install ...")
         os.chdir(app_folder)
-        run_cmd('npm install')
-        # TODO: specific ...
-        run_cmd(
-            'npm install --prefix {f} && npm run build --prefix {f}'.format(f='client'))
+        run_cmd(cmd_install)
         ##########################################
 
     if not do_stop and not do_kill:
@@ -325,8 +332,7 @@ if __name__ == "__main__":
         ##########################################
         print("\n\nAPP STARTING _________________________________\n")
         os.chdir(app_folder)
-        # TODO: specific ...
-        run_cmd('{e} npm run start &'.format(e=env))
+        run_cmd('{e} {s} &'.format(e=env, s=cmd_start))
         if webhook:
             webhook.send(webhook_start_message)
         ##########################################
