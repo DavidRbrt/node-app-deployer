@@ -320,7 +320,7 @@ if __name__ == "__main__":
             'npm install --prefix {f} && npm run build --prefix {f}'.format(f='client'))
         ##########################################
 
-    if not do_stop:
+    if not do_stop and not do_kill:
         # SET ENV VARIABLES & START APP
         ##########################################
         print("\n\nAPP STARTING _________________________________\n")
