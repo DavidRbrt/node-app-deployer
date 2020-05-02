@@ -161,7 +161,7 @@ def parse_conf(json_conf):
 
     # parse env
     for var in json_conf['env']:
-        env += ("{}='{}' ").format(var['name'], var['value'])
+        env += ("{}={} ").format(var['name'], var['value'])
 
     # parse cmd
     if 'cmd' in json_conf:
