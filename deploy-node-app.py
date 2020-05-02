@@ -167,7 +167,7 @@ def parse_conf(json_conf):
     if 'cmd' in json_conf:
         if 'start' in json_conf['cmd']:
             cmd_start = json_conf['cmd']['start']
-        if 'build' in json_conf['cmd']:
+        if 'install' in json_conf['cmd']:
             cmd_install = json_conf['cmd']['install']
 
     # parse webhook
